@@ -1,0 +1,10 @@
+101,Treadmill Run,35,175,9.0,true
+102,Rowing,abc,180,7.0,true
+103,Kettlebell Swings,20,190,9.8,false
+103,Duplicate ID Workout,20,190,9.8,false
+104,Cycling,40,165
+105,Swimming,30,-140,5.8,true
+106,Boxing,25,200,5.5,maybe
+
+107,Stretching,15,150,2.3,true
+108,,30,160,5.0,true

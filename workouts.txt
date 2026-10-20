@@ -1,0 +1,22 @@
+1,Running 6 mph,30,180,9.8,true
+2,Brisk Walking,45,150,4.3,true
+3,Cycling Moderate,40,165,8.0,true
+4,Swimming Laps,30,140,5.8,false
+5,Jump Rope,15,170,11.8,true
+6,Yoga,60,130,2.5,true
+7,Weight Lifting,45,200,6.0,true
+8,Rowing Machine,20,185,7.0,false
+9,Elliptical,30,160,5.0,true
+10,Hiking,90,175,6.0,true
+11,Stair Climbing,20,190,8.8,true
+12,HIIT Circuit,25,155,8.0,false
+13,Basketball,50,210,8.0,true
+14,Pilates,40,125,3.0,true
+15,Dancing,60,135,5.0,true
+16,Punching Bag,30,195,5.5,true
+17,Running 8 mph,25,175,11.8,true
+18,Soccer,60,180,7.0,true
+19,Tennis Singles,60,170,8.0,false
+20,Slow Walking,30,200,2.8,true
+21,Stationary Bike,30,185,6.8,true
+22,Jogging,40,145,7.0,true
