@@ -7,7 +7,7 @@ import java.util.Scanner;
  * validation, command line only). It only creates the menu and starts it.
  *
  * Java requires the main method to be static, so it is the one and only
- * static method in the whole project.
+ * static method in the whole project..
  */
 public class Main {
 

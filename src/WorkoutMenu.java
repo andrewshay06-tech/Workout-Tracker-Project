@@ -26,7 +26,7 @@ public class WorkoutMenu {
     private final String[] updateFields = {"name", "duration", "weight", "met", "completed"};
     private final String[] updatePrompts = {
             "New exercise name: ", "New duration in minutes: ", "New body weight in lbs: ",
-            "New MET value: ", "New completed value (true or false): "};
+            "New MET value: ", "New completed value (T or F): "};
 
     /**
      * Creates the menu.
@@ -110,9 +110,8 @@ public class WorkoutMenu {
                 + "7. Exit";
     }
 
-    // ------------------------------------------------------------------
+
     // Menu option handlers. Each one returns the message to print.
-    // ------------------------------------------------------------------
 
     /**
      * Option 1: asks for a file path and loads the workouts in it.
@@ -195,13 +194,13 @@ public class WorkoutMenu {
         if (met == null) {
             return cancelMessage;
         }
-        String completed = promptValidField("completed", "Completed? (true or false): ");
+        String completed = promptValidField("completed", "Completed? (T or F): ");
         if (completed == null) {
             return cancelMessage;
         }
 
         Workout workout = new Workout(Integer.parseInt(id), name, Integer.parseInt(duration),
-                Double.parseDouble(weight), Double.parseDouble(met), completed.equalsIgnoreCase("true"));
+                Double.parseDouble(weight), Double.parseDouble(met), validator.parseCompleted(completed));
         if (manager.addWorkout(workout)) {
             return "Workout added:\n" + headerRow() + "\n" + formatRow(workout);
         }
@@ -246,9 +245,10 @@ public class WorkoutMenu {
     }
 
     /**
-     * Option 5: asks for an ID and removes that workout.
+     * Option 5: asks for an ID, shows that workout, asks the user to confirm,
+     * and then removes it.
      *
-     * @return a confirmation or a not found message
+     * @return a confirmation, a cancel message, or a not found message
      */
     private String handleRemove() {
         String idText = promptValidField("id", "ID of the workout to remove: ");
@@ -256,6 +256,20 @@ public class WorkoutMenu {
             return cancelMessage;
         }
         int id = Integer.parseInt(idText);
+        Workout workout = manager.findWorkoutById(id);
+        if (workout == null) {
+            return "No workout was found with ID " + id + ", so nothing was removed.";
+        }
+
+        // Show the workout and make the user confirm before it is deleted.
+        System.out.println("\nWorkout to remove:\n" + headerRow() + "\n" + formatRow(workout));
+        String answer = promptConfirmation("Are you sure you want to delete this workout? (yes/no): ");
+        if (answer == null) {
+            return cancelMessage;
+        }
+        if (answer.equals("no")) {
+            return "Delete cancelled. Nothing was removed.";
+        }
         if (manager.removeWorkout(id)) {
             return "Workout " + id + " was removed.";
         }
@@ -285,9 +299,9 @@ public class WorkoutMenu {
                 workout.getExerciseName(), workout.getMetValue(), weightKg, hours, calories);
     }
 
-    // ------------------------------------------------------------------
+
     // Prompt helpers. These keep asking until the input is valid.
-    // ------------------------------------------------------------------
+
 
     /**
      * Prints a prompt and reads one line. If there is no more input, it
@@ -349,6 +363,31 @@ public class WorkoutMenu {
         }
     }
 
+
+    /**
+     * Keeps asking a yes or no question until the user answers it.
+     * Y, yes, N and no are accepted in any capitalization.
+     *
+     * @param prompt the question to show
+     * @return "yes" or "no", or null if the user typed cancel or the input ended
+     */
+    private String promptConfirmation(String prompt) {
+        while (true) {
+            String text = readLine(prompt);
+            if (text == null || text.trim().equalsIgnoreCase("cancel")) {
+                return null;
+            }
+            String t = text.trim();
+            if (t.equalsIgnoreCase("y") || t.equalsIgnoreCase("yes")) {
+                return "yes";
+            }
+            if (t.equalsIgnoreCase("n") || t.equalsIgnoreCase("no")) {
+                return "no";
+            }
+            System.out.println("  Error: please answer yes or no.");
+        }
+    }
+
     /**
      * Keeps asking until the user picks a field number from 1 to 5.
      *
@@ -368,9 +407,9 @@ public class WorkoutMenu {
         }
     }
 
-    // ------------------------------------------------------------------
+
     // Formatting helpers
-    // ------------------------------------------------------------------
+
 
     /**
      * Builds the header line of the workout table.

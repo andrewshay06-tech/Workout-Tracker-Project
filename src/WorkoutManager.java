@@ -82,7 +82,7 @@ public class WorkoutManager {
                 workout.setMetValue(Double.parseDouble(value));
                 return true;
             case "completed":
-                workout.setCompleted(value.equalsIgnoreCase("true"));
+                workout.setCompleted(validator.parseCompleted(value));
                 return true;
             default:
                 return false;

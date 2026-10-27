@@ -15,7 +15,7 @@ public class WorkoutValidator {
     // Allowed ranges and sizes (kept as instance constants, no static members).
     private final int maxNameLength = 30;
     private final int maxDurationMinutes = 1440;   // 24 hours
-    private final double minWeightLbs = 30.0;
+    private final double minWeightLbs = 0.1;
     private final double maxWeightLbs = 1000.0;
     private final double minMet = 0.5;
     private final double maxMet = 25.0;
@@ -115,17 +115,34 @@ public class WorkoutValidator {
     }
 
     /**
-     * Checks the completed flag: only the words true or false (any capitalization).
+     * Checks the completed flag: T, F, true or false (any capitalization).
      *
      * @param text the text the user typed
-     * @return true if the text is "true" or "false"
+     * @return true if the text is "T", "F", "true" or "false"
      */
     public boolean isValidCompleted(String text) {
         if (text == null) {
             return false;
         }
         String t = text.trim();
-        return t.equalsIgnoreCase("true") || t.equalsIgnoreCase("false");
+        return t.equalsIgnoreCase("t") || t.equalsIgnoreCase("f")
+                || t.equalsIgnoreCase("true") || t.equalsIgnoreCase("false");
+    }
+
+    /**
+     * Turns a valid completed flag into a boolean. T and true mean true,
+     * everything else (F and false) means false. Check the text with
+     * isValidCompleted first.
+     *
+     * @param text the text the user typed, like "T" or "false"
+     * @return true for "T" or "true", false otherwise
+     */
+    public boolean parseCompleted(String text) {
+        if (text == null) {
+            return false;
+        }
+        String t = text.trim();
+        return t.equalsIgnoreCase("t") || t.equalsIgnoreCase("true");
     }
 
     /**
@@ -158,7 +175,7 @@ public class WorkoutValidator {
                         : "The MET value must be a number from 0.5 to 25 (like 9.8).";
             case "completed":
                 return isValidCompleted(value) ? ""
-                        : "Completed must be the word true or false.";
+                        : "Completed must be T or F (or the word true or false).";
             default:
                 return "Unknown field.";
         }

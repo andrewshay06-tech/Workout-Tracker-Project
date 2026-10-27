@@ -115,7 +115,7 @@ public class WorkoutFileLoader {
         }
         return new Workout(Integer.parseInt(parts[0]), parts[1], Integer.parseInt(parts[2]),
                 Double.parseDouble(parts[3]), Double.parseDouble(parts[4]),
-                parts[5].equalsIgnoreCase("true"));
+                validator.parseCompleted(parts[5]));
     }
 
     /**
