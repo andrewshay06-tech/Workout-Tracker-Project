@@ -16,6 +16,7 @@ import java.util.Scanner;
  */
 public class WorkoutMenu {
 
+
     private final Scanner in;
     private final WorkoutManager manager = new WorkoutManager();
     private final WorkoutValidator validator = new WorkoutValidator();

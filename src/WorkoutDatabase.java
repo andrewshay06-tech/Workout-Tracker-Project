@@ -37,6 +37,13 @@ import java.util.Locale;
  *    problem can never crash the program.
  */
 public class WorkoutDatabase {
+    /**
+     * Creates a WorkoutDatabase that is not connected yet. Call connect with
+     * the path of a SQLite file before using any other method.
+     */
+    public WorkoutDatabase() {
+    }
+
 
     private final WorkoutValidator validator = new WorkoutValidator();
 

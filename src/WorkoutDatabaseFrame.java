@@ -64,6 +64,7 @@ import java.util.Locale;
  */
 public class WorkoutDatabaseFrame extends JFrame {
 
+
     // ------------------------------------------------------------------
     // Data layer and validation (the validator is the same class used in Phases 1 to 3)
     // ------------------------------------------------------------------

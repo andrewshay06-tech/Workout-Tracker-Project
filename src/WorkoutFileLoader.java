@@ -22,6 +22,12 @@ import java.util.List;
  * program. They set an error message the menu can show instead.
  */
 public class WorkoutFileLoader {
+    /**
+     * Creates a WorkoutFileLoader with no errors recorded yet.
+     */
+    public WorkoutFileLoader() {
+    }
+
 
     private final WorkoutValidator validator = new WorkoutValidator();
     private final long maxFileBytes = 5_000_000L;      // refuse huge files

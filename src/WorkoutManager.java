@@ -11,6 +11,12 @@ import java.util.List;
  * Every method returns a value so it is easy to test.
  */
 public class WorkoutManager {
+    /**
+     * Creates a WorkoutManager with an empty list of workouts.
+     */
+    public WorkoutManager() {
+    }
+
 
     private final List<Workout> workouts = new ArrayList<>();
     private final WorkoutFileLoader loader = new WorkoutFileLoader();

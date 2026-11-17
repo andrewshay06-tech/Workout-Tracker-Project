@@ -62,6 +62,7 @@ import java.util.Locale;
  */
 public class WorkoutFrame extends JFrame {
 
+
     // ------------------------------------------------------------------
     // Logic layer objects (the same classes used in Phases 1 and 2)
     // ------------------------------------------------------------------

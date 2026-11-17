@@ -12,6 +12,13 @@ import javax.swing.SwingUtilities;
  * static method in the whole project.
  */
 public class Main {
+    /**
+     * Creates the Main application class. It is never used directly because
+     * the program starts from the main method.
+     */
+    public Main() {
+    }
+
 
     /**
      * Starts the Workout Tracker window.
@@ -19,6 +26,7 @@ public class Main {
      * @param args command line arguments (not used)
      */
     public static void main(String[] args) {
+
         // Swing windows must be created on the Event Dispatch Thread.
         SwingUtilities.invokeLater(() -> {
             WorkoutDatabaseFrame frame = new WorkoutDatabaseFrame();

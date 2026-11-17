@@ -11,6 +11,13 @@
  * "12d" are rejected. Then the range is checked.
  */
 public class WorkoutValidator {
+    /**
+     * Creates a WorkoutValidator. It keeps no data, so one object can check
+     * any number of values.
+     */
+    public WorkoutValidator() {
+    }
+
 
     // Allowed ranges and sizes (kept as instance constants, no static members).
     private final int maxNameLength = 30;
@@ -39,7 +46,7 @@ public class WorkoutValidator {
 
     /**
      * Checks an exercise name: not blank, at most 30 characters, has at least
-     * one letter, and only uses letters, numbers, spaces and . ' - ( ) / & +
+     * one letter, and only uses letters, numbers, spaces and . ' - ( ) / &amp; +
      * (no commas, because commas separate the values in the text file).
      *
      * @param text the text the user typed

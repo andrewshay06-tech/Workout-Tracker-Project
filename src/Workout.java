@@ -11,6 +11,7 @@
  */
 public class Workout {
 
+
     // Private fields (encapsulation). Other classes use the getters and setters.
     private final int workoutId;       // unique ID, never changes after creation
     private String exerciseName;       // for example "Running 6 mph"
